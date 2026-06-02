@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álbum de Futbol Virtual</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Mantenemos tu increíble identidad visual oscura y premium */
+    body {
+      background: linear-gradient(135deg, #091428, #000, #5c0011);
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* BANNERS PERSONALIZADOS */
+    .banner {
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .barcelona-banner {
+      background-image: url('https://images.unsplash.com/photo-1577223625816-7546f13df25d?q=80&w=1400&auto=format&fit=crop');
+    }
+
+    .espana-banner {
+      background-image: url('https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?q=80&w=1400&auto=format&fit=crop');
+    }
+
+    /* ESTILOS DE LAS CARTAS (Mantenidos para preservar rarezas) */
+    .card-custom {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: 0.3s;
+      backdrop-filter: blur(10px);
+      height: 100%;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .legendaria { border-color: gold; }
+    .epica { border-color: violet; }
+    .rara { border-color: cyan; }
+
+    .card-custom img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .rareza {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    /* Estilos extras para las cajas de arquitectura */
+    .box-architecture {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="sticky-top py-3 px-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+    <h1 class="h2 text-warning m-0"> Álbum de Futbol Virtual</h1>
+    <button class="btn btn-warning fw-bold px-4 py-2" onclick="abrirSobre()">
+      Abrir Sobre
+    </button>
+  </header>
+
+  <main class="container-fluid p-0">
+    
+    <section class="banner barcelona-banner d-flex align-items-center justify-content-center text-center px-3">
+      <div class="position-relative z-2" style="max-width: 800px;">
+        <h2 class="display-3 fw-bold m-0">FC <span class="text-warning">Barcelona</span></h2>
+        <p class="fs-5 text-secondary mt-3">Colecciona las estrellas del Barça temporada 2025/2026.</p>
+      </div>
+    </section>
+
+    <div class="container my-5">
+      <h2 class="display-5 text-warning mb-4">FC Barcelona 🔵🔴</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="contenedor-barcelona"></div>
+    </div>
+
+    <section class="banner espana-banner d-flex align-items-center justify-content-center text-center px-3">
+      <div class="position-relative z-2" style="max-width: 800px;">
+        <h2 class="display-3 fw-bold m-0">Selección <span class="text-warning">Española</span></h2>
+        <p class="fs-5 text-secondary mt-3">Completa la colección internacional de España.</p>
+      </div>
+    </section>
+
+    <div class="container my-5">
+      <h2 class="display-5 text-warning mb-4">Selección Española 🇪🇸</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="contenedor-espana"></div>
+    </div>
+
+    <section class="container my-5 py-4">
+      <h2 class="display-5 text-warning mb-4">Arquitectura y Patrones</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        
+        <div class="col">
+          <div class="box-architecture p-4 h-100">
+            <h3 class="text-warning h4 mb-3">Arquitectura MVVM</h3>
+            <p class="m-0 text-light opacity-75">
+              Model → datos <br><br>
+              View → interfaz <br><br>
+              ViewModel → lógica
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="box-architecture p-4 h-100">
+            <h3 class="text-warning h4 mb-3">Factory Pattern</h3>
+            <p class="m-0 text-light opacity-75">
+              Generación dinámica de cartas según rareza y equipo.
+            </p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="box-architecture p-4 h-100">
+            <h3 class="text-warning h4 mb-3">Cliente - Servidor</h3>
+            <p class="m-0 text-light opacity-75">
+              Frontend HTML/CSS/JS conectado a backend Node.js.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal fade" id="pestañaNuevoJugador" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 380px;">
+      <div class="modal-content border-warning border-2 p-3 text-center text-white" style="background: #111c30; border-radius: 24px;">
+        <div class="modal-header border-0 p-0 justify-content-end">
+          <button type="button" class="btn-close btn-close-white fs-5" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="text-warning fw-bold fs-5 mb-3">¡NUEVO JUGADOR OBTENIDO! 🎉</div>
+          <div id="renderCartaModal" class="mb-4 d-flex justify-content-center"></div>
+          <button class="btn btn-warning fw-bold w-100 py-2 mb-2" data-bs-dismiss="modal">Guardar en Álbum</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-4 border-top border-secondary border-opacity-25 text-secondary mt-5">
+    ⚽ Álbum de Futbol Virtual 2025/2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ==========================================
+    // DATOS (Se mantienen intactos tus arrays)
+    // ==========================================
+    const jugadoresBarcelona = [
+      { nombre:"Lamine Yamal - Barça", posicion:"Extremo", rareza:"Legendaria", imagen:"https://i.etsystatic.com/53184385/r/il/5b2560/6979453482/il_fullxfull.6979453482_p29p.jpg" },
+      { nombre:"Pedri - Barça", posicion:"Mediocampista", rareza:"Épica", imagen:"https://i.pinimg.com/736x/e2/ca/01/e2ca01496077c364c6d9e24e2b0bebf0.jpg" },
+      { nombre:"Gavi - Barça", posicion:"Mediocampista", rareza:"Rara", imagen:"https://www.mycrochetchums.com/wp-content/uploads/2026/01/tieu-su-Gavi-1.jpg" },
+      { nombre:"Raphinha - Barça", posicion:"Extremo", rareza:"Legendaria", imagen:"https://imgs.search.brave.com/0dsJd3_9XXosdH8nYKZphWO9FqjK_dI2_l-eMt5OlV8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuZ29hbC5jb20v/aW1hZ2VzL3YzL2Js/dDM4NTk4YzkyOTNi/YjQ3ZWMvUmV2aXZl/ZCUyMFJhcGhpbmhh/JTIwZmx5aW5nJTIw/Zm9yJTIwQmFyY2Eu/anBnP2F1dG89d2VicCJmb3JtYXQ9cGpwZyZ3aWR0aD0zODQwJnF1YWxpdHk9NjA" }
+    ];
+
+    const jugadoresEspana = [
+      { nombre:"Lamine Yamal - España", posicion:"Extremo", rareza:"Legendaria", imagen:"https://a.espncdn.com/photo/2024/0712/r1357899_1296x729_16-9.jpg" },
+      { nombre:"Eric Garcia - España", posicion:"Defensa", rareza:"Épica", imagen:"https://okdiario.com/img/2022/03/28/eric-garcia-655x368.jpg" },
+      { nombre:"Dani Olmo - España", posicion:"Extremo", rareza:"Legendaria", imagen:"https://www.directvsports.com/__export/1720199831621/sites/dsports/img/2024/07/05/wgy3a45b.png_181162493.png" },
+      { nombre:"Dean Huijsen - España", posicion:"Defensa Central", rareza:"Épica", imagen:"https://imgs.search.brave.com/ekywvKrFxNSKB7d_BTPO5wKbO0JDjCmgCnj1GCpVI-w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjIw/NjA3MTU2Mi9waG90/by9zcGFpbi1kZWZl/bmRlci1kZWFuLWh1/aWpzZW4tcGFydGlj/aXBhdGVzLWluLXRo/ZS1tYXRjaC1iZXR3/ZWVuLXNwYWluLWFu/ZC10aGUtbmV0aGVy/bGFuZHMtYXQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPUU0/UHVCZEtWSkVhQzFU/ZnVxWVpNUlAtYmVN/dUVZYXVpeGlEMENK/dEZFRFk9" }
+    ];
+
+    const cartasDesbloqueables = [
+      { nombre:"Pau Cubarsi - Barça", posicion:"Defensa Central", rareza:"Legendaria", equipo:"barcelona", imagen:"https://imgs.search.brave.com/o5HY4TbMVVJM04SHJEZiaID48lrnjiRudm6-3IEoEFU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjE3/MjE5Mzg0NS9waG90/by9iYXJjZWxvbmEt/c3BhaW4tcGF1LWN1/YmFyc2ktb2YtZmMt/YmFyY2Vsb25hLXBv/c2VzLWZvci1hLXBv/cnRyYWl0LWR1cmlu/Zy10aGUtZmMtYmFy/Y2Vsb25hLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1iUHRs/OWw5YnNVMVhfT1pN/Y014TXAyQW1wRS1W/QUtZLTJwYVhubFRp/UmJVPQ" },
+      { nombre:"Pau Victor - Barça", posicion:"Delantero", rareza:"Épica", equipo:"barcelona", imagen:"https://imgs.search.brave.com/bZkTcOoor1g54wBGzLvLgagE-THb5kKJilCCJaUiX5A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjE5/NjE1NzYwNi9waG90/by9wYXUtdmljdG9y/LW9mLWZjLWJhcmNl/bG9uYS1kdXJpbmct/dGhlLXVlZmEtY2hh/bXBpb25zLWxlYWd1/ZS1tYXRjaC1kYXRl/LTgtYmV0d2Vlbi1m/Yy1iYXJjZWxvbmEu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PS01Ylk1a2R5NGhG/T1hjc0pfbkRFTE1H/cG9sUnBhZHRvUVVS/MURONHlsUk09" },
+      { nombre:"Marcus Rashford - Barça", posicion:"Extremo", rareza:"Legendaria", equipo:"barcelona", imagen:"https://imgs.search.brave.com/FQmOkwjFog3e6tzT9jpzkdervZGbQM7Pkt1vhNJ7Qj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuZ29hbC5jb20v/aW1hZ2VzL3YzL2Js/dDE5YTVlMzM0NTM5/ZWQ1MWIvY3JvcC9N/TTVES01CUUdVNURF/T0JSR1U1RzQzM1hN/VTVEQU9SU0dZWUE9/PT09L0dldHR5SW1h/Z2VzLTIyNTUyMzQy/NzMuanBnP2F1dG89/d2VicCZmb3JtYXQ9/cGpwZyZ3aWR0aD0z/ODQwJnF1YWxpdHk9/NjA" },
+      { nombre:"Grimaldo - España", posicion:"Lateral Izquierdo", rareza:"Épica", equipo:"espana", imagen:"https://imgs.search.brave.com/3fTD8G9Hl7J2J3-xRknxKbt3hwokyntwPczhuV3S9YA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9lc3Rh/dGljb3MtY2RuLnBy/ZW5zYWbiZXJpY2Eu/ZXMvY2xpcC85MjIz/YjFkYi1jYWRiLTQ2/MDctODY1YS1mMTVl/MDViZTU2YTlfYWx0/YS1saWJyZS1hc3Bl/Y3QtcmF0aW9fZGVm/YXVsdF8wLmpwZw" },
+      { nombre:"Joan Garcia - España", posicion:"Portero", rareza:"Rara", equipo:"espana", imagen:"https://imgs.search.brave.com/kgPxT_uQkiqWRXo07VJGP-Nmpmqs3oxNWOl2qMHee6s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9vYmpl/dG9zLmVzdGF0aWNv/cy1tYXJjYS5jb20v/YXNzZXRzL211bHRp/bWVkaWEvaW1hZ2Vu/ZXMvMjAyNi8wMy8y/Ny8xNzc0NjAwNTEz/MjAzOC5qcGc" },
+      { nombre:"David Raya - España", posicion:"Portero", rareza:"Legendaria", equipo:"espana", imagen:"https://imgs.search.brave.com/uA7KoxzLFjE7676jXtdOmQvRTn_8IMr_DrRskuJ4MqI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9l/L2UyL0RhdmlkX1Jh/eWFfaW5fMjAyNS5q/cGc" }
+    ];
+
+    const preguntasQuizBase = [
+      { pregunta:"¿Cómo se llama el estadio del FC Barcelona?", respuesta:"camp nou", equipo:"barcelona" },
+      { pregunta:"¿Qué colores representan al FC Barcelona?", respuesta:"azulgrana", equipo:"barcelona" },
+      { pregunta:"¿Qué selección ganó la Euro 2024?", respuesta:"espana", equipo:"espana" },
+      { pregunta:"¿De qué país es la selección española?", respuesta:"espana", equipo:"espana" }
+    ];
+
+    let preguntasDisponibles = [...preguntasQuizBase]; 
+    const jugadoresObtenidos = []; 
+
+    // Instancia del modal de Bootstrap
+    let bootstrapModal;
+    document.addEventListener("DOMContentLoaded", () => {
+      bootstrapModal = new bootstrap.Modal(document.getElementById('pestañaNuevoJugador'));
+    });
+
+    // ==========================================
+    // FACTORY PATTERN (Adaptado a Grid Bootstrap)
+    // ==========================================
+    function crearCarta(jugador, contenedor) {
+      // Creamos la columna contenedora para el sistema de rejilla
+      const col = document.createElement("div");
+      col.classList.add("col");
+
+      let claseRareza = jugador.rareza === "Legendaria" ? "legendaria" : (jugador.rareza === "Épica" ? "epica" : "rara");
+
+      col.innerHTML = `
+        <div class="card-custom ${claseRareza}">
+          <img src="${jugador.imagen}" alt="${jugador.nombre}">
+          <div class="p-3">
+            <h3 class="h5 mb-2 fw-bold text-truncate">${jugador.nombre}</h3>
+            <p class="text-secondary small mb-3">${jugador.posicion}</p>
+            <span class="rareza">${jugador.rareza}</span>
+          </div>
+        </div>
+      `;
+
+      contenedor.appendChild(col);
+    }
+
+    // ==========================================
+    // VIEWMODEL
+    // ==========================================
+    function mostrarCartasBarcelona() {
+      const contenedor = document.getElementById("contenedor-barcelona");
+      jugadoresBarcelona.forEach(jugador => {
+        crearCarta(jugador, contenedor);
+        jugadoresObtenidos.push(jugador.nombre);
+      });
+    }
+
+    function mostrarCartasEspana() {
+      const contenedor = document.getElementById("contenedor-espana");
+      jugadoresEspana.forEach(jugador => {
+        crearCarta(jugador, contenedor);
+        jugadoresObtenidos.push(jugador.nombre);
+      });
+    }
+
+    // ==========================================
+    // LÓGICA DE MODAL (Bootstrap Integrado)
+    // ==========================================
+    function lanzarPestañaNuevoJugador(nuevaCarta) {
+      const contenedorModal = document.getElementById("renderCartaModal");
+      contenedorModal.innerHTML = "";
+      
+      // Renderizamos la carta dentro del modal
+      crearCarta(nuevaCarta, contenedorModal);
+      
+      // Quitamos temporalmente la clase 'col' interna para que luzca bien centrada en el modal
+      contenedorModal.firstChild.removeAttribute('class');
+      contenedorModal.firstChild.style.width = "100%";
+
+      bootstrapModal.show();
+    }
+
+    // ==========================================
+    // ABRIR SOBRE (ANTI-REPETICIONES)
+    // ==========================================
+    function abrirSobre() {
+      if (preguntasDisponibles.length === 0) {
+        alert("¡Has respondido todas las preguntas disponibles del Quiz! Colección completada.");
+        return;
+      }
+
+      const indiceRandom = Math.floor(Math.random() * preguntasDisponibles.length);
+      const preguntaRandom = preguntasDisponibles[indiceRandom];
+
+      const respuestaUsuario = prompt("⚽ QUIZ FUTBOLERO ⚽\n\n" + preguntaRandom.pregunta);
+
+      if (respuestaUsuario === null) return;
+
+      if (respuestaUsuario.toLowerCase().trim() === preguntaRandom.respuesta) {
+        const cartasDisponiblesEquipo = cartasDesbloqueables.filter(carta =>
+          carta.equipo === preguntaRandom.equipo && !jugadoresObtenidos.includes(carta.nombre)
+        );
+
+        if (cartasDisponiblesEquipo.length === 0) {
+          alert(`¡Correcto! Pero ya tienes todas las cartas ocultas desbloqueables de la sección: ${preguntaRandom.equipo.toUpperCase()}.`);
+          preguntasDisponibles.splice(indiceRandom, 1);
+          return;
+        }
+
+        const nuevaCarta = cartasDisponiblesEquipo[Math.floor(Math.random() * cartasDisponiblesEquipo.length)];
+        jugadoresObtenidos.push(nuevaCarta.nombre);
+        preguntasDisponibles.splice(indiceRandom, 1);
+
+        let contenedor = (nuevaCarta.equipo === "barcelona") 
+          ? document.getElementById("contenedor-barcelona") 
+          : document.getElementById("contenedor-espana");
+
+        crearCarta(nuevaCarta, contenedor);
+        lanzarPestañaNuevoJugador(nuevaCarta);
+      } else {
+        alert("❌ Respuesta incorrecta.\n\nIntenta nuevamente.");
+      }
+    }
+
+    // ==========================================
+    // INIT
+    // ==========================================
+    mostrarCartasBarcelona();
+    mostrarCartasEspana();
+  </script>
+</body>
+</html>
